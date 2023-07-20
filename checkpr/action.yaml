@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: Run apply
-      uses: ../apply
+      uses: ../apply/
     - name: check for changes
       id: changes
       shell: bash
