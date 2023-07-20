@@ -13,7 +13,7 @@ runs:
       shell: bash
       run: |
         cd "$TMPCHECKOUT"
-        git checkout git@github.com:cresta/syncer.git
+        git clone git@github.com:cresta/syncer.git
         cd syncer
         go install ./cmd/syncer
         which syncer
