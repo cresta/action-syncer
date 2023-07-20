@@ -15,6 +15,8 @@ runs:
         cd "$TMPCHECKOUT"
         git clone https://github.com/cresta/syncer.git
         cd syncer
+        go mod download
+        go mod verify
         go install ./cmd/syncer
         which syncer
         cd ..
