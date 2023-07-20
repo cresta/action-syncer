@@ -12,10 +12,12 @@ runs:
     - name: Install syncer
       shell: bash
       run: |
-        cd "{{ runner.temp }}"
+        cd "$TMPCHECKOUT"
         git checkout git@github.com:cresta/syncer.git
         cd syncer
         go install ./cmd/syncer
         which syncer
         cd ..
         rm -rf syncer
+      env:
+        TMPCHECKOUT: ${{ runner.temp }}
