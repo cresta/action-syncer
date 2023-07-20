@@ -9,7 +9,7 @@ runs:
   using: "composite"
   steps:
     - name: Run apply
-      uses: ../apply/
+      uses: cresta/action-syncer/apply@main # TODO: I wish I could just do "uses: ../apply" can someone figure out how to make that work
     - name: check for changes
       id: changes
       shell: bash
