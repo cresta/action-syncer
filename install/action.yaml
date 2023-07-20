@@ -1,0 +1,21 @@
+name: 'Install syncer application'
+description: 'Just install syncer'
+
+runs:
+  using: "composite"
+  steps:
+    - name: setup go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.16
+    # TODO: Download pre compiled version
+    - name: Install syncer
+      shell: bash
+      run: |
+        cd "{{ runner.temp }}"
+        git checkout git@github.com:cresta/syncer.git
+        cd syncer
+        go install ./cmd/syncer
+        which syncer
+        cd ..
+        rm -rf syncer

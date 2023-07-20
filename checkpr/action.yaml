@@ -1,0 +1,37 @@
+name: 'Check for changes to a PR'
+description: 'Check for changes and comment on PR if there are any'
+inputs:
+  token:
+    description: 'The GitHub token to use'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run apply
+      uses: ../apply
+    - name: check for changes
+      id: changes
+      shell: bash
+      run: |
+        if [[ `git diff --exit-code` ]]; then
+          echo '::set-output name=CHANGES::true'
+          echo 'Files causing linting to fail:'
+          git diff --name-only
+        else
+          echo '::set-output name=CHANGES::false'
+        fi
+    - name: 'Comment PR on changes'
+      uses: actions/github-script@v6.4.1
+      if: steps.changes.outputs.CHANGES == 'true'
+      with:
+        github-token: ${{ inputs.token }}
+        script: |
+          const { issue: { number: issue_number }, repo: { owner, repo }  } = context;
+          github.rest.issues.createComment({ issue_number, owner, repo, body: 'Syncer files are changed.  Try commenting /sync to auto push a resync' });
+    - name: Fail job
+      if: steps.changes.outputs.CHANGES == 'true'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          core.setFailed('syncer changes detected')

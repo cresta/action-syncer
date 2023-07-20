@@ -1,0 +1,12 @@
+name: 'Execute syncer apply'
+description: 'Run apply'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install syncer
+      uses: ../install
+    - name: Run apply
+      shell: bash
+      run: |
+          syncer apply

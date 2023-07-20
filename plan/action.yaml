@@ -1,0 +1,12 @@
+name: 'Execute syncer plan'
+description: 'Run plan and exit with code 1 if there are any changes'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install syncer
+      uses: ../install
+    - name: Run plan
+      shell: bash
+      run: |
+          syncer plan --exit-code
