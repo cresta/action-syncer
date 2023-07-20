@@ -2,7 +2,8 @@ name: 'Update a PR with syncer changes'
 description: 'Update pull request after someone comments /sync'
 inputs:
   token:
-    description: 'The GitHub token to use'
+    # For more info, see https://github.com/orgs/community/discussions/37103
+    description: 'The GitHub token to use.  Warning: if you use {{ secrets.GITHUB_TOKEN }} this will not re-trigger workflows.  You probably want to use a personal access token, deploy key, or service token.  See https://github.com/orgs/community/discussions/37103 for more information.'
     required: true
   username:
     description: 'The user.name to use for the commit'

@@ -2,7 +2,7 @@ name: 'Check for changes to a PR'
 description: 'Check for changes and comment on PR if there are any'
 inputs:
   token:
-    description: 'The GitHub token to use'
+    description: 'The GitHub token to use.  You probably just want to use ${{ secrets.GITHUB_TOKEN }}'
     required: true
 
 runs:
