@@ -25,3 +25,5 @@ runs:
         curl --silent --fail --location --output /tmp/syncer https://github.com/cresta/syncer/releases/download/${{ inputs.version}}/syncer_Linux_x86_64.tar.gz
         tar -xzf /tmp/syncer -C /tmp
         mv /tmp/syncer "$BIN_DIR/syncer"
+      env:
+        BIN_DIR: ${{ steps.binpath.outputs.BIN_DIR }}
