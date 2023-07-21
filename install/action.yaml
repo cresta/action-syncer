@@ -26,4 +26,4 @@ runs:
         tar -xzf /tmp/syncer -C /tmp
         mv /tmp/syncer "$BIN_DIR/syncer"
       env:
-        BIN_DIR: ${{ steps.binpath.outputs.BIN_DIR }}
+        BIN_DIR: ${{ steps.binpath.outputs.bin-dir }}
