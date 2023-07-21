@@ -23,7 +23,7 @@ runs:
         fi
     - name: 'Comment PR on changes'
       uses: actions/github-script@v6.4.1
-      if: steps.changes.outputs.CHANGES == 'true'
+      if: steps.changes.outputs.CHANGES == 'true' && github.event_name == 'pull_request'
       with:
         github-token: ${{ inputs.token }}
         script: |
