@@ -12,7 +12,7 @@ inputs:
   email:
     description: 'The user.email to use for the commit'
     required: false
-    default: 'noreply@cresta.ai'
+    default: 'noreply@getsyncer.ai'
   message:
     description: 'The commit message to use'
     required: false
@@ -26,7 +26,7 @@ runs:
   using: "composite"
   steps:
     - name: Run apply
-      uses: cresta/action-syncer/apply@main # TODO: I wish I could just do "uses: ../apply" can someone figure out how to make that work
+      uses: getsyncer/action-syncer/apply@main # TODO: I wish I could just do "uses: ../apply" can someone figure out how to make that work
     - name: check for changes
       id: changes
       shell: bash

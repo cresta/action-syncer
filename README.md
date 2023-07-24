@@ -1,2 +1,2 @@
 # action-syncer
-A github action for cresta/syncer
+A github action for getsyncer/syncer
