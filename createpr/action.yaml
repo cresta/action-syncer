@@ -1,0 +1,70 @@
+name: 'Create a new pull request, if one is needed, for updated syncer files'
+description: 'Creates PR.  Assumes the code is already checked out'
+inputs:
+  token:
+    # For more info, see https://github.com/orgs/community/discussions/37103
+    description: 'The GitHub token to use for creating the pull request'
+    required: true
+  username:
+    description: 'The user.name to use for the commit'
+    required: false
+    default: 'Syncer bot'
+  email:
+    description: 'The user.email to use for the commit'
+    required: false
+    default: 'noreply@cresta.ai'
+  message:
+    description: 'The commit message to use'
+    required: false
+    default: 'nit: Syncer bot (Autoformat)'
+  prbranchname:
+    description: 'The name of the branch to use for the PR'
+    required: false
+    default: 'syncerautopr'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run apply
+      uses: cresta/action-syncer/apply@main # TODO: I wish I could just do "uses: ../apply" can someone figure out how to make that work
+    - name: check for changes
+      id: changes
+      shell: bash
+      run: |
+        if [[ `git diff --exit-code` ]]; then
+          echo "CHANGES=true" >> "$GITHUB_OUTPUT"
+          echo 'Files causing linting to fail:'
+          git diff --name-only
+        else
+          echo "CHANGES=false" >> "$GITHUB_OUTPUT"
+        fi
+    - name: Commit changes
+      if: steps.changes.outputs.CHANGES == 'true'
+      shell: bash
+      run: |
+        git config user.email "$EMAIL"
+        git config user.name "$USER"
+        git commit --all --message="$MESSAGE"
+        git push origin "HEAD:$PR_BRANCH_NAME"
+      env:
+        USER: ${{ inputs.username }}
+        EMAIL: ${{ inputs.email }}
+        MESSAGE: ${{ inputs.message }}
+        PR_BRANCH_NAME: ${{ inputs.prbranchname }}
+    - name: pull-request
+      if: steps.changes.outputs.CHANGES == 'true'
+      shell: bash
+      run: |
+        # Now make the PR and auto merge it
+        set -euo pipefail
+        PR_STATUS=$(gh pr view "${PR_BRANCH_NAME}" --json state -q .state)
+        echo "Current PR status is ${PR_STATUS}"
+        if [ "$PR_STATUS" != "OPEN" ]; then
+          gh pr create --base master --head "${PR_BRANCH_NAME}" --title "ci(syncer): auto pr" --body "auto generated PR of syncer"  --label syncer
+        fi
+        # Sometimes there is a race in this job: Always try to auto merge these PRs even if the previous
+        # status wasn't OPEN
+        gh pr merge "${PR_BRANCH_NAME}" --auto --squash --delete-branch
+      env:
+        GITHUB_TOKEN: ${{ inputs.token }}
+        PR_BRANCH_NAME: ${{ inputs.prbranchname }}

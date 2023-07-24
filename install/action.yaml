@@ -21,9 +21,11 @@ runs:
     - name: Install syncer
       shell: bash
       run: |
-        # TODO: Use tools cache
-        curl --silent --fail --location --output /tmp/syncer https://github.com/cresta/syncer/releases/download/${{ inputs.version}}/syncer_Linux_x86_64.tar.gz
-        tar -xzf /tmp/syncer -C /tmp
-        mv /tmp/syncer "$BIN_DIR/syncer"
+        # TODO: Use tools cache by first downloading the file to the tools cache and checking there
+        # TODO: Use correct arch rather than assume Linux and x86_64
+        curl --silent --fail --location --output "$TEMPDIR/syncer" https://github.com/cresta/syncer/releases/download/${{ inputs.version}}/syncer_Linux_x86_64.tar.gz
+        tar -xzf $TEMPDIR/syncer -C $TEMPDIR
+        mv $TEMPDIR/syncer "$BIN_DIR/syncer"
       env:
         BIN_DIR: ${{ steps.binpath.outputs.bin-dir }}
+        TEMPDIR: ${{ runner.temp }}
