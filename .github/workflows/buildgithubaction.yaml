@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
   test:
     name: test
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
   bump_tag:
     # All pushes to main bump our semantic release tag, but only if the build passes.  That way, we don't
     # release any tags that don't pass tests.
@@ -31,7 +31,7 @@ jobs:
       - test
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Generate token
         id: generate_token
         uses: tibdex/github-app-token@v1
