@@ -29,3 +29,8 @@ runs:
       env:
         BIN_DIR: ${{ steps.binpath.outputs.bin-dir }}
         TEMPDIR: ${{ runner.temp }}
+    - name: setup go
+      uses: actions/setup-go@v4
+      if: ${{ hashFiles('.syncer/go.mod') != '' }}
+      with:
+        go-version-file: '.syncer/go.mod'
