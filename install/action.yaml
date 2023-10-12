@@ -31,6 +31,6 @@ runs:
         TEMPDIR: ${{ runner.temp }}
     - name: setup go
       uses: actions/setup-go@v4
-      if: ${{ hashFiles('.syncer/go.mod') != '' }}
+      if: ${{ hashFiles('go.mod') != '' }}
       with:
-        go-version-file: '.syncer/go.mod'
+        go-version-file: 'go.mod'
