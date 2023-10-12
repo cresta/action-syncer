@@ -50,8 +50,8 @@ github.com/emirpasic/gods v1.18.1/go.mod h1:8tpGGwCnJ5H4r6BWwaV6OrWmMoPhUl5jm/FM
 github.com/flynn/go-shlex v0.0.0-20150515145356-3f9db97f8568/go.mod h1:xEzjJPgXI435gkrCt3MPfRiAkVrwSbHsst4LCFVfpJc=
 github.com/frankban/quicktest v1.14.4 h1:g2rn0vABPOOXmZUj+vbmUp0lPoXEMuhTpIluN0XL9UY=
 github.com/frankban/quicktest v1.14.4/go.mod h1:4ptaffx2x8+WTWXmUCuVU6aPUX1/Mz7zb5vbUoiM6w0=
-github.com/getsyncer/public-sync-modules v1.24.0 h1:xafWO0wKUkRfOBqTGHSapfRN6pITz1gR1th7OMol67M=
-github.com/getsyncer/public-sync-modules v1.24.0/go.mod h1:Lz+38k1mZLJPGPi33LxEsS4jhw1uoyQLaziksnZEGMM=
+github.com/getsyncer/public-sync-modules v1.26.0 h1:tLX7L8JXhiMaV9kMoKk52wpOdgRx8uYTx3i8juVQ9jw=
+github.com/getsyncer/public-sync-modules v1.26.0/go.mod h1:Lz+38k1mZLJPGPi33LxEsS4jhw1uoyQLaziksnZEGMM=
 github.com/getsyncer/syncer-core v1.10.0 h1:S0xQDXciMgikQmC7ZJUEjXpkEQDmdnRqjdX9OJU78eU=
 github.com/getsyncer/syncer-core v1.10.0/go.mod h1:UGt6bruHxpTQMXk5hsi6V2bXKjaw+W48GAxyT2Vffqg=
 github.com/gliderlabs/ssh v0.2.2/go.mod h1:U7qILu1NlMHj9FlMhZLlkCdDnU1DBEAqr0aevW3Awn0=
