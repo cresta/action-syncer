@@ -1,6 +1,11 @@
 version: 1
 config:
-  name: "syncer-core"
+  name: "action-syncer"
+  extends:
+    - "github>getsyncer/action-syncer:custom-renovate.json"
 
 children:
   - source: github.com/getsyncer/public-sync-modules/opensourceghaction
+
+logic:
+  - source: github.com/getsyncer/public-sync-modules/renovatebot
