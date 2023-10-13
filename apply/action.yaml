@@ -9,4 +9,6 @@ runs:
     - name: Run apply
       shell: bash
       run: |
+          pwd
+          ls -la
           syncer apply
