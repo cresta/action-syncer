@@ -31,11 +31,11 @@ runs:
         TEMPDIR: ${{ runner.temp }}
     - name: setup go
       uses: actions/setup-go@v4
-      if: ${{ hashFiles('getsyncer/go.mod') != '' }}
+      if: ${{ hashFiles('internal/go.mod') != '' }}
       with:
-        go-version-file: 'getsyncer/go.mod'
+        go-version-file: 'internal/go.mod'
     - name: setup go
       uses: actions/setup-go@v4
-      if: ${{ hashFiles('getsyncer/go.mod') == '' && hashFiles('go.mod') != '' }}
+      if: ${{ hashFiles('internal/go.mod') == '' && hashFiles('go.mod') != '' }}
       with:
         go-version-file: 'go.mod'
