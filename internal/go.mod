@@ -3,13 +3,8 @@ module syncer
 go 1.21.3
 
 require (
-<<<<<<< HEAD:getsyncer/go.mod
-	github.com/getsyncer/public-sync-modules v1.28.2
-	github.com/getsyncer/syncer-core v1.14.3
-=======
 	github.com/getsyncer/public-sync-modules v1.28.3
 	github.com/getsyncer/syncer-core v1.14.4
->>>>>>> d55b6a3 (fix: different vendor situation):internal/go.mod
 )
 
 require (
