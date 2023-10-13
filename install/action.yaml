@@ -34,8 +34,10 @@ runs:
       if: ${{ hashFiles('internal/go.mod') != '' }}
       with:
         go-version-file: 'internal/go.mod'
+        cache-dependency-path: 'internal/go.sum'
     - name: setup go
       uses: actions/setup-go@v4
       if: ${{ hashFiles('internal/go.mod') == '' && hashFiles('go.mod') != '' }}
       with:
         go-version-file: 'go.mod'
+        cache-dependency-path: 'go.sum'
