@@ -11,4 +11,5 @@ runs:
       run: |
           pwd
           ls -la
+          ls -la getsyncer
           LOG_LEVEL=debug syncer apply
