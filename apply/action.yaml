@@ -6,6 +6,13 @@ runs:
   steps:
     - name: Install syncer
       uses: getsyncer/action-syncer/install@main # TODO: I wish I could just do "uses: ../install" can someone figure out how to make that work
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
+      with:
+        ## limits ssh access and adds the ssh public key for the user which triggered the workflow
+        limit-access-to-actor: true
+        ## limits ssh access and adds the ssh public keys of the listed GitHub users
+        limit-access-to-users: cep21
     - name: Run apply
       shell: bash
       run: |
