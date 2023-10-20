@@ -4,14 +4,14 @@ name: Test for sync changes
 on:
   push:
     branches:
-      - 
+      - main
   pull_request:
     branches:
-      - 
+      - main
   workflow_dispatch: {}
 
 jobs:
-  build:
+  check:
     name: Check for changes
     runs-on: ubuntu-latest
     steps:
