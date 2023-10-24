@@ -4,7 +4,7 @@ inputs:
   version:
     description: 'Version to install.  Defaults to latest'
     required: false
-    default: "v1.18.8" # renovate: datasource=github-tags depName=getsyncer/syncer versioning=loose
+    default: "v1.18.11" # renovate: datasource=github-tags depName=getsyncer/syncer versioning=loose
 
 runs:
   using: "composite"
