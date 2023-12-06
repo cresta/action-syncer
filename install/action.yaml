@@ -30,13 +30,13 @@ runs:
         BIN_DIR: ${{ steps.binpath.outputs.bin-dir }}
         TEMPDIR: ${{ runner.temp }}
     - name: setup go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       if: ${{ hashFiles('internal/go.mod') != '' }}
       with:
         go-version-file: 'internal/go.mod'
         cache-dependency-path: 'internal/go.sum'
     - name: setup go
-      uses: actions/setup-go@v4
+      uses: actions/setup-go@v5
       if: ${{ hashFiles('internal/go.mod') == '' && hashFiles('go.mod') != '' }}
       with:
         go-version-file: 'go.mod'
