@@ -1,6 +1,6 @@
 module syncer
 
-go 1.21.3
+go 1.22.0
 
 require (
 	github.com/getsyncer/public-sync-modules v1.32.1
